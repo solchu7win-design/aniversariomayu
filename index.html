@@ -210,6 +210,15 @@
   .buscador{ display:flex; gap:8px; margin-top:14px; }
   .buscador input{ flex:1; }
   .buscador button{ width:auto; margin-top:0; padding: 0 18px; flex-shrink:0; }
+
+  .btn-ver-mas{
+    width:100%; margin-top: 14px; padding: 11px; border-radius: 10px;
+    background: transparent; border: 1px solid rgba(217,175,82,0.35);
+    color: var(--dorado-claro); font-weight: 700; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .btn-ver-mas:hover{ background: rgba(217,175,82,0.08); box-shadow:none; transform:none; }
+  .btn-ver-mas:disabled{ opacity: 0.5; }
   #resultadoBusqueda{ margin-top: 14px; }
   #resultadoBusqueda .lista-tickets{ margin-top:0; }
 
@@ -351,6 +360,7 @@
     <ul class="lista-tickets" id="listaTickets">
       <li class="vacio">Todavía no hay tickets cargados</li>
     </ul>
+    <button id="btnVerMas" class="btn-ver-mas" style="display:none;">Ver más tickets</button>
   </div>
   <div id="vistaGanador" style="display:none;">
     <h2>🏆 Ganadores del aniversario</h2>
@@ -439,22 +449,48 @@ function grupoHTML(g){
   `;
 }
 
+let limiteTickets = 100;
+const PASO_VER_MAS = 100;
+const LIMITE_MAXIMO = 500;
+
 function renderTickets(tickets){
   const ul = document.getElementById('listaTickets');
+  const btnVerMas = document.getElementById('btnVerMas');
+
   if(!tickets || tickets.length === 0){
     ul.innerHTML = '<li class="vacio">Todavía no hay tickets cargados</li>';
+    btnVerMas.style.display = 'none';
     return;
   }
-  const grupos = agruparTickets(tickets.slice(0, 20));
+
+  const grupos = agruparTickets(tickets.slice(0, limiteTickets));
   ul.innerHTML = grupos.map(grupoHTML).join('');
+
+  // Solo mostramos "Ver más" si hay indicios de que puede haber tickets
+  // más viejos todavía sin traer (llegamos justo al límite pedido).
+  if(tickets.length >= limiteTickets && limiteTickets < LIMITE_MAXIMO){
+    btnVerMas.style.display = 'block';
+    btnVerMas.disabled = false;
+    btnVerMas.textContent = 'Ver más tickets';
+  } else {
+    btnVerMas.style.display = 'none';
+  }
 }
 
 async function cargarTickets(){
   try{
-    const data = await apiGet('ultimos_tickets&limite=20');
+    const data = await apiGet(`ultimos_tickets&limite=${limiteTickets}`);
     renderTickets(data.tickets);
   }catch(err){ console.error(err); }
 }
+
+document.getElementById('btnVerMas').addEventListener('click', async () => {
+  const btnVerMas = document.getElementById('btnVerMas');
+  btnVerMas.disabled = true;
+  btnVerMas.textContent = 'Cargando...';
+  limiteTickets = Math.min(limiteTickets + PASO_VER_MAS, LIMITE_MAXIMO);
+  await cargarTickets();
+});
 
 function iniciarRefrescoTickets(){
   if(intervaloTickets) return;
@@ -681,27 +717,32 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
 
   btn.disabled = true;
   btn.dataset.cargando = '1';
+  btn.textContent = cantidadSeleccionada > 1
+    ? `Cargando ${cantidadSeleccionada} tickets...`
+    : 'Cargando...';
+
+  // Se mandan todos los pedidos al mismo tiempo (en vez de uno por uno)
+  // para que sea más rápido. No genera duplicados porque el backend
+  // usa un LockService que ordena las escrituras del lado del servidor,
+  // aunque los pedidos lleguen todos juntos desde acá.
+  const pedidos = [];
+  for(let i = 0; i < cantidadSeleccionada; i++){
+    pedidos.push(
+      apiPost({ action:'registrar_ticket', agente, cliente })
+        .catch(() => ({ ok:false, error:'Error de conexión, intentá de nuevo.' }))
+    );
+  }
+  const resultados = await Promise.all(pedidos);
 
   let generados = 0;
   let ultimoNumero = null;
   let errorMsg = null;
-
-  for(let i = 0; i < cantidadSeleccionada; i++){
-    btn.textContent = cantidadSeleccionada > 1
-      ? `Cargando ${i + 1} de ${cantidadSeleccionada}...`
-      : 'Cargando...';
-    try{
-      const data = await apiPost({ action:'registrar_ticket', agente, cliente });
-      if(data.ok){
-        generados++;
-        ultimoNumero = data.numero;
-      } else {
-        errorMsg = data.error;
-        break;
-      }
-    }catch(err){
-      errorMsg = 'Error de conexión, intentá de nuevo.';
-      break;
+  for(const data of resultados){
+    if(data.ok){
+      generados++;
+      if(ultimoNumero === null || data.numero > ultimoNumero) ultimoNumero = data.numero;
+    } else if(!errorMsg){
+      errorMsg = data.error;
     }
   }
 

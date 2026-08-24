@@ -316,7 +316,6 @@
   <label for="agente">Agente</label>
   <select id="agente">
     <option value="" disabled selected>Seleccioná un agente</option>
-    <option value="MAYU">MAYU</option>
     <option value="SOLCI">SOLCI</option>
     <option value="GUERRERAS">GUERRERAS</option>
   </select>
@@ -350,7 +349,7 @@
 
 <div class="card" id="cardTicketsOGanador">
   <div id="vistaTickets">
-    <h2>Últimos tickets</h2>
+    <h2 id="tituloListaTickets">Últimos tickets</h2>
     <div class="buscador">
       <input id="buscarInput" type="text" placeholder="Buscar por usuario, agente o número">
       <button id="btnBuscar">Buscar</button>
@@ -479,7 +478,11 @@ function renderTickets(tickets){
 
 async function cargarTickets(){
   try{
-    const data = await apiGet(`ultimos_tickets&limite=${limiteTickets}`);
+    const agente = document.getElementById('agente').value;
+    const accion = agente
+      ? `tickets_por_agente&agente=${encodeURIComponent(agente)}&limite=${limiteTickets}`
+      : `ultimos_tickets&limite=${limiteTickets}`;
+    const data = await apiGet(accion);
     renderTickets(data.tickets);
   }catch(err){ console.error(err); }
 }
@@ -495,7 +498,7 @@ document.getElementById('btnVerMas').addEventListener('click', async () => {
 function iniciarRefrescoTickets(){
   if(intervaloTickets) return;
   cargarTickets();
-  intervaloTickets = setInterval(cargarTickets, 25000);
+  intervaloTickets = setInterval(cargarTickets, 40000);
 }
 function detenerRefrescoTickets(){
   if(intervaloTickets){ clearInterval(intervaloTickets); intervaloTickets = null; }
@@ -550,7 +553,7 @@ async function cargarEstado(){
   }catch(err){ console.error(err); }
 }
 cargarEstado();
-setInterval(cargarEstado, 30000);
+setInterval(cargarEstado, 45000);
 
 // ---- Aviso de números restantes por agente ----
 const agenteSelect = document.getElementById('agente');
@@ -595,7 +598,16 @@ async function actualizarAvisoRango(){
   }
 }
 
-agenteSelect.addEventListener('change', actualizarAvisoRango);
+agenteSelect.addEventListener('change', () => {
+  actualizarAvisoRango();
+
+  const agente = agenteSelect.value;
+  const titulo = document.getElementById('tituloListaTickets');
+  titulo.textContent = agente ? `Últimos tickets de ${agente}` : 'Últimos tickets';
+
+  limiteTickets = 100; // reiniciamos el "ver más" al cambiar de agente
+  cargarTickets();
+});
 
 // ---- Autocompletar de usuario ----
 const usuarioInput = document.getElementById('cliente');
@@ -721,28 +733,41 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
     ? `Cargando ${cantidadSeleccionada} tickets...`
     : 'Cargando...';
 
-  // Se mandan todos los pedidos al mismo tiempo (en vez de uno por uno)
-  // para que sea más rápido. No genera duplicados porque el backend
-  // usa un LockService que ordena las escrituras del lado del servidor,
-  // aunque los pedidos lleguen todos juntos desde acá.
-  const pedidos = [];
-  for(let i = 0; i < cantidadSeleccionada; i++){
-    pedidos.push(
-      apiPost({ action:'registrar_ticket', agente, cliente })
-        .catch(() => ({ ok:false, error:'Error de conexión, intentá de nuevo.' }))
-    );
-  }
-  const resultados = await Promise.all(pedidos);
-
+  // Los pedidos se mandan DE A UNO, en orden (no todos juntos). El
+  // backend usa un LockService que solo deja procesar un registro a
+  // la vez para no duplicar números — mandarlos todos en paralelo
+  // solo hace que se amontonen esperando el lock y algunos terminen
+  // en timeout, que es justo lo que causaba las cargas parciales.
   let generados = 0;
   let ultimoNumero = null;
   let errorMsg = null;
-  for(const data of resultados){
+
+  for(let i = 0; i < cantidadSeleccionada; i++){
+    btn.textContent = cantidadSeleccionada > 1
+      ? `Cargando ${i + 1} de ${cantidadSeleccionada}...`
+      : 'Cargando...';
+
+    // Reintenta una vez si falla por un problema de red pasajero,
+    // antes de darse por vencido con ese ticket puntual.
+    let data = null;
+    for(let intento = 1; intento <= 2 && data === null; intento++){
+      try{
+        data = await apiPost({ action:'registrar_ticket', agente, cliente });
+      }catch(err){
+        if(intento === 2){
+          data = { ok:false, error:'Error de conexión, intentá de nuevo.' };
+        } else {
+          await new Promise(r => setTimeout(r, 600));
+        }
+      }
+    }
+
     if(data.ok){
       generados++;
-      if(ultimoNumero === null || data.numero > ultimoNumero) ultimoNumero = data.numero;
-    } else if(!errorMsg){
+      ultimoNumero = data.numero;
+    } else {
       errorMsg = data.error;
+      break;
     }
   }
 

@@ -175,6 +175,7 @@
 
   .lista-tickets{ list-style:none; margin-top: 4px; display:flex; flex-direction:column; gap: 12px; }
   .ticket-card{
+    position: relative;
     display:flex; flex-direction:column; align-items:center; gap: 8px;
     padding: 16px 18px;
     border: 2.5px solid rgba(217,175,82,0.65);
@@ -182,6 +183,17 @@
     background: linear-gradient(160deg, rgba(217,175,82,0.10), rgba(217,175,82,0.03));
     box-shadow: 0 0 18px rgba(217,175,82,0.25), inset 0 0 20px rgba(217,175,82,0.05);
   }
+  .btn-compartir{
+    position:absolute; top:10px; right:10px;
+    width:30px; height:30px; margin:0; padding:0;
+    border-radius:50%; border:1px solid rgba(217,175,82,0.55);
+    background: rgba(217,175,82,0.14); color: var(--dorado-claro);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; text-transform:none; font-size:14px; line-height:1;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-compartir:hover{ background: rgba(217,175,82,0.26); transform: scale(1.08); box-shadow:none; }
+  .btn-compartir:disabled{ opacity:0.5; cursor:default; transform:none; }
   .numeros-grupo{
     display:flex; flex-direction:row; flex-wrap:wrap;
     justify-content:center; align-items:baseline;
@@ -286,6 +298,7 @@
   footer{ margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.3); text-align:center; letter-spacing: 0.5px; }
   footer strong{ color: rgba(217,175,82,0.6); }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -432,13 +445,17 @@ function agruparTickets(tickets){
   return grupos;
 }
 
-function grupoHTML(g){
+function grupoHTML(g, prefijo){
   const primero = g.tickets[0];
   const f = new Date(primero.timestamp);
   const fechaStr = `${f.toLocaleDateString('es-AR')} ${f.toLocaleTimeString('es-AR', {hour:'2-digit', minute:'2-digit'})}`;
   const numerosHTML = g.tickets.map(t => `<span class="numero-chip">${pad4(t.numero)}</span>`).join('');
+  const idTarjeta = `tarjeta-${prefijo}-${primero.numero}`;
   return `
-    <li class="ticket-card">
+    <li class="ticket-card" id="${idTarjeta}">
+      <button type="button" class="btn-compartir" title="Compartir como imagen" onclick="compartirTarjeta('${idTarjeta}')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+      </button>
       <div class="numeros-grupo">${numerosHTML}</div>
       <div class="info-grupo">
         <div class="cliente-agente">${g.cliente} <span class="agente-inline">(${g.agente})</span></div>
@@ -446,6 +463,58 @@ function grupoHTML(g){
       </div>
     </li>
   `;
+}
+
+// Convierte la tarjeta en una imagen PNG y la comparte (en celular,
+// abre el menú nativo de compartir) o la descarga (en compu, si no
+// hay soporte para compartir archivos directamente).
+async function compartirTarjeta(idTarjeta){
+  const tarjeta = document.getElementById(idTarjeta);
+  if(!tarjeta) return;
+
+  const btn = tarjeta.querySelector('.btn-compartir');
+  const iconoOriginal = btn.innerHTML;
+  btn.disabled = true;
+  btn.style.visibility = 'hidden'; // que no salga el botón en la captura
+
+  try{
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+
+    const canvas = await html2canvas(tarjeta, {
+      backgroundColor: '#000000',
+      scale: 2
+    });
+
+    btn.style.visibility = 'visible';
+
+    canvas.toBlob(async (blob) => {
+      if(!blob) return;
+      const archivo = new File([blob], `ticket-${idTarjeta}.png`, { type: 'image/png' });
+
+      if(navigator.canShare && navigator.canShare({ files: [archivo] })){
+        try{
+          await navigator.share({ files: [archivo], title: 'Sorteo Aniversario Red Mayu' });
+        }catch(err){
+          // el usuario canceló el menú de compartir: no hacemos nada
+        }
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `ticket.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    }, 'image/png');
+  }catch(err){
+    alert('No se pudo generar la imagen, intentá de nuevo.');
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = iconoOriginal;
+    btn.style.visibility = 'visible';
+  }
 }
 
 let limiteTickets = 100;
@@ -463,7 +532,7 @@ function renderTickets(tickets){
   }
 
   const grupos = agruparTickets(tickets.slice(0, limiteTickets));
-  ul.innerHTML = grupos.map(grupoHTML).join('');
+  ul.innerHTML = grupos.map(g => grupoHTML(g, 'recientes')).join('');
 
   // Solo mostramos "Ver más" si hay indicios de que puede haber tickets
   // más viejos todavía sin traer (llegamos justo al límite pedido).
@@ -815,7 +884,7 @@ async function buscarTickets(){
       box.innerHTML = '<div class="vacio">No se encontraron tickets con esa búsqueda.</div>';
       return;
     }
-    box.innerHTML = `<ul class="lista-tickets">${agruparTickets(data.tickets).map(grupoHTML).join('')}</ul>`;
+    box.innerHTML = `<ul class="lista-tickets">${agruparTickets(data.tickets).map(g => grupoHTML(g, 'busqueda')).join('')}</ul>`;
   }catch(err){
     box.innerHTML = '<div class="vacio">Error al buscar, intentá de nuevo.</div>';
   }

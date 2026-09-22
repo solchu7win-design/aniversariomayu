@@ -1,1 +1,880 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sorteo Aniversario — Red Mayu</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23170a2e'/%3E%3Ccircle cx='32' cy='32' r='24' fill='%23ff2ec4'/%3E%3Ctext x='32' y='42' font-family='Arial, sans-serif' font-size='30' font-weight='800' fill='%23e9c46a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E"><link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23170a2e'/%3E%3Ccircle cx='32' cy='32' r='24' fill='%23ff2ec4'/%3E%3Ctext x='32' y='42' font-family='Arial, sans-serif' font-size='30' font-weight='800' fill='%23e9c46a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@900&family=Cormorant+Garamond:wght@600;700&family=Bebas+Neue&family=Fredoka:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet"><style>:root{--morado-fondo:#050505;--morado-panel:#150710;--morado-vivo:#c2158a;--fucsia:#ff2ec4;--lila:#ffb8e6;--dorado:#d9af52;--dorado-claro:#f6e3a1;--dorado-opaco:#8a6a2c;--blanco:#ffffff;--texto-tenue:#e0b3cf}*{box-sizing:border-box;margin:0;padding:0}body{background:radial-gradient(circle at 20% -15%,rgba(217,175,82,.1) 0,transparent 35%),radial-gradient(circle at 85% 0,rgba(255,46,196,.08) 0,transparent 40%),#000;color:var(--blanco);font-family:Manrope,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px 60px}.cinta-aniversario{display:flex;align-items:center;gap:10px;padding:5px 16px;border-radius:999px;margin-bottom:16px;border:1px solid rgba(217,175,82,.5);background:linear-gradient(90deg,rgba(217,175,82,.08),rgba(255,46,196,.08))}.cinta-aniversario .linea{width:16px;height:1px;background:linear-gradient(90deg,transparent,var(--dorado))}.cinta-aniversario .linea.der{background:linear-gradient(90deg,var(--dorado),transparent)}.cinta-aniversario span.txt{font-family:'Cormorant Garamond',serif;font-weight:700;font-style:italic;font-size:13px;letter-spacing:1px;color:var(--dorado-claro)}h2{font-family:Fredoka,sans-serif;font-weight:700;letter-spacing:-.5px;text-transform:uppercase;color:var(--blanco)}header{text-align:center;margin-bottom:26px;display:flex;flex-direction:column;align-items:center}.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--fucsia);font-weight:800;margin-bottom:6px}h1{font-family:'Fira Sans',sans-serif;font-weight:900;font-size:62px;line-height:.95;letter-spacing:-1px;margin:4px 0;background:linear-gradient(180deg,var(--dorado-claro) 0,var(--dorado) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(.7px 0 0 rgba(255,208,140,.9)) drop-shadow(-.7px 0 0 rgba(255,208,140,.9)) drop-shadow(0 .7px 0 rgba(255,208,140,.9)) drop-shadow(0 -.7px 0 rgba(255,208,140,.9)) drop-shadow(0 0 22px rgba(255,46,196,.45));animation:pulsoFucsia 2.8s ease-in-out infinite}.monto-h1{display:block;font-size:1.22em;line-height:.95;letter-spacing:-1px;margin-top:14px}.leyenda-h1{display:block;font-size:.34em;line-height:1.1;letter-spacing:1px;margin-top:4px}@keyframes pulsoFucsia{0%,100%{filter:drop-shadow(.7px 0 0 rgba(255,208,140,.9)) drop-shadow(-.7px 0 0 rgba(255,208,140,.9)) drop-shadow(0 .7px 0 rgba(255,208,140,.9)) drop-shadow(0 -.7px 0 rgba(255,208,140,.9)) drop-shadow(0 0 18px rgba(255,46,196,.35))}50%{filter:drop-shadow(.7px 0 0 rgba(255,208,140,.9)) drop-shadow(-.7px 0 0 rgba(255,208,140,.9)) drop-shadow(0 .7px 0 rgba(255,208,140,.9)) drop-shadow(0 -.7px 0 rgba(255,208,140,.9)) drop-shadow(0 0 40px rgba(255,46,196,.85))}}.numero-display{font-family:Fredoka,sans-serif;font-weight:700;letter-spacing:-.5px}.premio{margin-top:8px;font-size:15px;color:var(--texto-tenue)}.premio strong{color:var(--dorado-claro)}.contador{display:flex;gap:10px;margin:22px 0 8px}.contador .bloque{background:var(--morado-panel);border:1px solid rgba(217,175,82,.3);border-radius:14px;padding:12px 14px;text-align:center;min-width:62px}.contador .num{font-family:'Bebas Neue';font-size:26px;color:var(--dorado-claro)}.contador .lbl{font-size:10px;color:var(--texto-tenue);text-transform:uppercase;letter-spacing:1px}.estado-badge{margin-top:10px;font-size:12px;padding:6px 14px;border-radius:20px;background:rgba(46,255,140,.12);color:#6bffb0;border:1px solid rgba(46,255,140,.3)}.estado-badge.cerrado{background:rgba(255,60,60,.12);color:#ff9d9d;border-color:rgba(255,60,60,.35)}.card{width:100%;max-width:420px;background:linear-gradient(160deg,var(--morado-panel),#0a0407);border:1px solid rgba(217,175,82,.18);border-radius:20px;padding:24px;margin-top:20px;box-shadow:0 20px 60px rgba(194,21,138,.28);position:relative}.card::before{content:'';position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(160deg,rgba(217,175,82,.35),transparent 30%,transparent 70%,rgba(255,46,196,.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}.card h2{font-size:22px;color:var(--blanco);margin-bottom:4px}.card .sub{font-size:13px;color:var(--texto-tenue);margin-bottom:18px}label{font-size:12px;color:var(--lila);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px;margin-top:14px}input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--blanco);font-size:15px;font-family:Manrope}input:focus{outline:0;border-color:var(--dorado)}input::placeholder{color:rgba(255,255,255,.3)}button{width:100%;margin-top:20px;padding:15px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--morado-vivo),var(--fucsia) 70%,var(--dorado) 130%);color:var(--blanco);font-weight:800;font-size:15px;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(217,175,82,.35)}button:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}.resultado{margin-top:18px;padding:16px;border-radius:12px;background:rgba(217,175,82,.08);border:1px solid rgba(217,175,82,.3);font-size:14px;display:none}.resultado.show{display:block}.resultado .numero-display{font-size:30px;color:var(--dorado-claro)}.resultado.error{background:rgba(255,60,60,.1);border-color:rgba(255,60,60,.4);color:#ffb3b3}.lista-tickets{list-style:none;margin-top:4px;display:flex;flex-direction:column;gap:12px}.ticket-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 18px;border:2.5px solid rgba(217,175,82,.65);border-radius:16px;background:linear-gradient(160deg,rgba(217,175,82,.1),rgba(217,175,82,.03));box-shadow:0 0 18px rgba(217,175,82,.25),inset 0 0 20px rgba(217,175,82,.05)}.btn-compartir{position:absolute;top:10px;right:10px;width:30px;height:30px;margin:0;padding:0;border-radius:50%;border:1px solid rgba(217,175,82,.55);background:rgba(217,175,82,.14);color:var(--dorado-claro);display:flex;align-items:center;justify-content:center;cursor:pointer;text-transform:none;font-size:14px;line-height:1;transition:transform .15s ease,background .15s ease}.btn-compartir:hover{background:rgba(217,175,82,.26);transform:scale(1.08);box-shadow:none}.btn-compartir:disabled{opacity:.5;cursor:default;transform:none}.numeros-grupo{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:2px 10px;width:100%}.numeros-grupo .numero-chip{color:var(--dorado-claro);font-weight:800;font-family:Fredoka,sans-serif;font-size:25px;line-height:1.3;letter-spacing:-.5px;text-shadow:0 0 12px rgba(217,175,82,.55),0 0 22px rgba(217,175,82,.25)}.info-grupo{color:var(--texto-tenue);text-align:center;width:100%}.info-grupo .cliente-agente{color:var(--blanco);font-weight:800;font-size:20px;word-break:break-word}.info-grupo .cliente-agente .agente-inline{color:var(--texto-tenue);font-weight:500;font-size:14px}.info-grupo .fecha{font-size:12px;margin-top:4px;color:rgba(224,179,207,.75)}.vacio{color:var(--texto-tenue);font-size:13px;text-align:center;padding:10px 0}select{width:100%;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"%3E%3Cpath d="M1 1l5 5 5-5" stroke="%23f6e3a1" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E') no-repeat right 14px center;color:var(--blanco);font-size:15px;font-family:Manrope;appearance:none;-webkit-appearance:none}select:focus{outline:0;border-color:var(--dorado)}select option{background:var(--morado-panel);color:var(--blanco)}.buscador{display:flex;gap:8px;margin-top:14px}.buscador input{flex:1}.buscador button{width:auto;margin-top:0;padding:0 18px;flex-shrink:0}.btn-ver-mas{width:100%;margin-top:14px;padding:11px;border-radius:10px;background:0 0;border:1px solid rgba(217,175,82,.35);color:var(--dorado-claro);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.5px}.btn-ver-mas:hover{background:rgba(217,175,82,.08);box-shadow:none;transform:none}.btn-ver-mas:disabled{opacity:.5}#resultadoBusqueda{margin-top:14px}#resultadoBusqueda .lista-tickets{margin-top:0}.campo-autocompletar{position:relative}.cantidad-tickets{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:8px}.cantidad-item{aspect-ratio:1/1;width:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:9px;color:var(--blanco);font-family:Fredoka,sans-serif;font-weight:700;font-size:13px;cursor:pointer;user-select:none;padding:0;transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}.cantidad-item:hover{border-color:rgba(217,175,82,.55)}.cantidad-item.activa{background:linear-gradient(135deg,var(--morado-vivo),var(--fucsia) 65%,var(--dorado) 130%);border-color:transparent;color:var(--blanco);box-shadow:0 6px 16px rgba(217,175,82,.3);transform:translateY(-1px)}.cantidad-hint{margin-top:8px;font-size:11px;color:var(--texto-tenue)}.rango-info{display:none;margin-top:8px;padding:9px 12px;border-radius:9px;font-size:12px;font-weight:700;align-items:center;gap:8px}.rango-info.show{display:flex}.rango-info .punto{width:7px;height:7px;border-radius:50%;flex-shrink:0}.rango-info.normal{background:rgba(255,255,255,.05);color:var(--texto-tenue);border:1px solid rgba(255,255,255,.1)}.rango-info.normal .punto{background:var(--lila)}.rango-info.aviso{background:rgba(217,175,82,.12);color:var(--dorado-claro);border:1px solid rgba(217,175,82,.4)}.rango-info.aviso .punto{background:var(--dorado)}.rango-info.urgente{background:rgba(255,46,196,.14);color:#ff8fe0;border:1px solid rgba(255,46,196,.5);animation:parpadeoUrgente 1.4s ease-in-out infinite}.rango-info.urgente .punto{background:var(--fucsia)}.rango-info.agotado{background:rgba(255,60,60,.14);color:#ff9d9d;border:1px solid rgba(255,60,60,.45)}.rango-info.agotado .punto{background:#ff5c5c}@keyframes parpadeoUrgente{0%,100%{opacity:1}50%{opacity:.6}}.sugerencias{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:20;background:#0e0509;border:1px solid rgba(217,175,82,.4);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.55);overflow:hidden;max-height:220px;overflow-y:auto}.sugerencias.show{display:block}.sugerencias .sugerencia-item{padding:11px 14px;font-size:14px;color:var(--blanco);cursor:pointer;border-bottom:1px solid rgba(255,255,255,.05)}.sugerencias .sugerencia-item:last-child{border-bottom:none}.sugerencias .sugerencia-item.activa,.sugerencias .sugerencia-item:hover{background:rgba(217,175,82,.14);color:var(--dorado-claro)}.ganador-box .numero-display{font-size:68px;background:linear-gradient(100deg,var(--dorado-claro) 0,var(--fucsia) 45%,var(--dorado-claro) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(217,175,82,.45))}footer{margin-top:40px;font-size:11px;color:rgba(255,255,255,.3);text-align:center;letter-spacing:.5px}footer strong{color:rgba(217,175,82,.6)}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script></head><body><header><div class="cinta-aniversario"><span class="linea"></span> <span class="txt">2º Aniversario</span> <span class="linea der"></span></div><div class="eyebrow">Red Mayu</div><h1>SORTEO<br>ANIVERSARIO<span class="monto-h1">$1.500.000</span><span class="leyenda-h1">EN PREMIOS!</span></h1><div class="premio">8 Ganadores: <strong>6 de $100.000</strong>, <strong>1 de $200.000</strong> y <strong>1 de $700.000</strong>.</div><div class="premio">Se entrega <strong>1 número cada $5.000</strong> de carga.</div><div class="premio" style="margin-top:12px;color:var(--dorado-claro);font-weight:700">Sorteo en vivo · 26/9 a las 22 hs · Facebook: Red Mayu</div></header><div class="contador" id="contadorRegresivo"><div class="bloque"><div class="num" id="dDias">--</div><div class="lbl">días</div></div><div class="bloque"><div class="num" id="dHoras">--</div><div class="lbl">hs</div></div><div class="bloque"><div class="num" id="dMin">--</div><div class="lbl">min</div></div><div class="bloque" style="border-color:rgba(255,184,230,.35)"><div class="num" id="dTickets" style="color:var(--lila)">--</div><div class="lbl">tickets</div></div></div><div class="estado-badge" id="estadoBadge">Cargando estado...</div><div class="card"><h2>Cargar ticket</h2><label for="agente">Agente</label> <select id="agente"><option value="" disabled selected>Seleccioná un agente</option><option value="SOLCI">SOLCI</option><option value="GUERRERAS">GUERRERAS</option></select><div class="rango-info" id="rangoInfo"><span class="punto"></span><span id="rangoInfoTexto"></span></div><label for="cliente">Usuario</label><div class="campo-autocompletar"><input id="cliente" type="text" placeholder="Nombre de usuario" autocomplete="off"><div id="usuarioSugerencias" class="sugerencias"></div></div><label>Cantidad de tickets</label><div class="cantidad-tickets" id="cantidadTickets"><button type="button" class="cantidad-item activa" data-cantidad="1">1</button> <button type="button" class="cantidad-item" data-cantidad="2">2</button> <button type="button" class="cantidad-item" data-cantidad="3">3</button> <button type="button" class="cantidad-item" data-cantidad="4">4</button> <button type="button" class="cantidad-item" data-cantidad="5">5</button> <button type="button" class="cantidad-item" data-cantidad="6">6</button> <button type="button" class="cantidad-item" data-cantidad="7">7</button> <button type="button" class="cantidad-item" data-cantidad="8">8</button> <button type="button" class="cantidad-item" data-cantidad="9">9</button> <button type="button" class="cantidad-item" data-cantidad="10">10</button></div><div class="cantidad-hint" id="cantidadHint">$5.000 de carga = 1 número</div><button id="btnRegistrar">Cargar ticket</button><div class="resultado" id="resultadoRegistro"></div></div><div class="card" id="cardTicketsOGanador"><div id="vistaTickets"><h2 id="tituloListaTickets">Últimos tickets</h2><div class="buscador"><input id="buscarInput" type="text" placeholder="Buscar por usuario, agente o número"> <button id="btnBuscar">Buscar</button></div><div id="resultadoBusqueda"></div><div class="divisor-sutil" style="height:1px;background:rgba(255,255,255,.06);margin:18px 0 4px"></div><ul class="lista-tickets" id="listaTickets"><li class="vacio">Todavía no hay tickets cargados</li></ul><button id="btnVerMas" class="btn-ver-mas" style="display:none">Ver más tickets</button></div><div id="vistaGanador" style="display:none"><h2>🏆 Ganadores del aniversario</h2><div class="ganador-box" style="padding-top:14px"><div class="numero-display" id="ganadorNumero">#--</div><div style="margin-top:10px">Usuario: <strong id="ganadorCliente">—</strong></div><div>Agente: <strong id="ganadorAgente">—</strong></div><div style="margin-top:6px;color:var(--dorado-claro);font-weight:800" id="ganadorPremio">Ganó un premio</div><div style="margin-top:12px;color:var(--texto-tenue);font-size:12px" id="ganadorFecha">Ticket entregado el —</div></div></div></div><footer>Sorteo Aniversario · <strong>Red Mayu</strong></footer><script>const API_URL="https://script.google.com/macros/s/AKfycby5zIzrOAutReTemw6zfFZWk-52Kf1C0O0GnCzHFqI8gR-kGaZBdJz6P-nlAxy4DOIbmA/exec";let intervaloTickets=null;function pad4(e){return String(e).padStart(4,"0")}async function apiGet(e){return(await fetch(`${API_URL}?action=${e}&v=2`)).json()}async function apiPost(e){return(await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(e)})).json()}function actualizarContador(e){const t=new Date(e).getTime(),n=Date.now(),a=Math.max(0,t-n),i=Math.floor(a/864e5),o=Math.floor(a/36e5%24),c=Math.floor(a/6e4%60);document.getElementById("dDias").textContent=i,document.getElementById("dHoras").textContent=String(o).padStart(2,"0"),document.getElementById("dMin").textContent=String(c).padStart(2,"0")}function agruparTickets(e){const t=[];for(const n of e){const e=t[t.length-1];e&&e.cliente===n.cliente&&e.agente===n.agente&&Math.abs(new Date(e.tickets[e.tickets.length-1].timestamp)-new Date(n.timestamp))<18e4?e.tickets.push(n):t.push({cliente:n.cliente,agente:n.agente,tickets:[n]})}return t}function grupoHTML(e,t){const n=e.tickets[0],a=new Date(n.timestamp),i=`${a.toLocaleDateString("es-AR")} ${a.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}`,o=e.tickets.map(e=>`<span class="numero-chip">${pad4(e.numero)}</span>`).join(""),c=`tarjeta-${t}-${n.numero}`;return`\n    <li class="ticket-card" id="${c}">\n      <button type="button" class="btn-compartir" title="Compartir como imagen" onclick="compartirTarjeta('${c}')">\n        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>\n      </button>\n      <div class="numeros-grupo">${o}</div>\n      <div class="info-grupo">\n        <div class="cliente-agente">${e.cliente} <span class="agente-inline">(${e.agente})</span></div>\n        <div class="fecha">${i}</div>\n      </div>\n    </li>\n  `}async function compartirTarjeta(e){const t=document.getElementById(e);if(!t)return;const n=t.querySelector(".btn-compartir"),a=n.innerHTML;n.disabled=!0,n.style.visibility="hidden";try{document.fonts&&document.fonts.ready&&await document.fonts.ready;const a=await html2canvas(t,{backgroundColor:"#000000",scale:2});n.style.visibility="visible",a.toBlob(async t=>{if(!t)return;const n=new File([t],`ticket-${e}.png`,{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[n]}))try{await navigator.share({files:[n],title:"Sorteo Aniversario Red Mayu"})}catch(e){}else{const e=URL.createObjectURL(t),n=document.createElement("a");n.href=e,n.download="ticket.png",document.body.appendChild(n),n.click(),document.body.removeChild(n),URL.revokeObjectURL(e)}},"image/png")}catch(e){alert("No se pudo generar la imagen, intentá de nuevo.")}finally{n.disabled=!1,n.innerHTML=a,n.style.visibility="visible"}}let limiteTickets=100;const PASO_VER_MAS=100,LIMITE_MAXIMO=500;function renderTickets(e){const t=document.getElementById("listaTickets"),n=document.getElementById("btnVerMas");if(!e||0===e.length)return t.innerHTML='<li class="vacio">Todavía no hay tickets cargados</li>',void(n.style.display="none");const a=agruparTickets(e.slice(0,limiteTickets));t.innerHTML=a.map(e=>grupoHTML(e,"recientes")).join(""),e.length>=limiteTickets&&limiteTickets<500?(n.style.display="block",n.disabled=!1,n.textContent="Ver más tickets"):n.style.display="none"}async function cargarTickets(){try{const e=document.getElementById("agente").value,t=e?`tickets_por_agente&agente=${encodeURIComponent(e)}&limite=${limiteTickets}`:`ultimos_tickets&limite=${limiteTickets}`;renderTickets((await apiGet(t)).tickets)}catch(e){console.error(e)}}function iniciarRefrescoTickets(){intervaloTickets||(cargarTickets(),intervaloTickets=setInterval(cargarTickets,4e4))}function detenerRefrescoTickets(){intervaloTickets&&(clearInterval(intervaloTickets),intervaloTickets=null)}function mostrarVistaGanador(e){if(document.getElementById("vistaTickets").style.display="none",document.getElementById("vistaGanador").style.display="block",detenerRefrescoTickets(),e&&(document.getElementById("ganadorNumero").textContent=`#${pad4(e.numero)}`,document.getElementById("ganadorCliente").textContent=e.cliente||"—",document.getElementById("ganadorAgente").textContent=e.agente||"—",document.getElementById("ganadorPremio").textContent=e.premio?`Ganó $${Number(e.premio).toLocaleString("es-AR")}`:"Ganó un premio",e.fecha_ticket)){const t=new Date(e.fecha_ticket);document.getElementById("ganadorFecha").textContent=`Ticket entregado el ${t.toLocaleDateString("es-AR")} a las ${t.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}`}}function mostrarVistaTickets(){document.getElementById("vistaTickets").style.display="block",document.getElementById("vistaGanador").style.display="none"}async function cargarEstado(){try{const e=await apiGet("estado_liviano");e.semana_fin&&actualizarContador(e.semana_fin);const t=document.getElementById("estadoBadge"),n=document.getElementById("btnRegistrar");document.getElementById("dTickets").textContent=e.contador??0,e.habilitado?(t.textContent="Carga de tickets abierta",t.className="estado-badge",n.disabled=!1):(t.textContent="Carga de tickets cerrada",t.className="estado-badge cerrado",n.disabled=!0),e.mostrar_ganador?mostrarVistaGanador(e.ganador):(mostrarVistaTickets(),e.habilitado?iniciarRefrescoTickets():detenerRefrescoTickets())}catch(e){console.error(e)}}document.getElementById("btnVerMas").addEventListener("click",async()=>{const e=document.getElementById("btnVerMas");e.disabled=!0,e.textContent="Cargando...",limiteTickets=Math.min(limiteTickets+100,500),await cargarTickets()}),cargarEstado(),setInterval(cargarEstado,45e3);const agenteSelect=document.getElementById("agente"),rangoInfoEl=document.getElementById("rangoInfo"),rangoInfoTextoEl=document.getElementById("rangoInfoTexto");async function actualizarAvisoRango(){const e=agenteSelect.value;if(e)try{const t=((await apiGet("rangos_info")).rangos||[]).filter(t=>t.agente===e);if(0===t.length)return void rangoInfoEl.classList.remove("show");const n=t.reduce((e,t)=>e+t.libres,0),a=t.map(e=>`${e.inicio}–${e.fin}`).join(" y ");rangoInfoEl.classList.add("show"),rangoInfoEl.classList.remove("normal","aviso","urgente","agotado"),n<=0?(rangoInfoEl.classList.add("agotado"),rangoInfoTextoEl.textContent=`Quedan 0 números para ${e} (${a}). Por favor, cargá el siguiente rango antes de seguir vendiendo.`):n<=10?(rangoInfoEl.classList.add("urgente"),rangoInfoTextoEl.textContent=`¡Quedan solo ${n} números en el rango de ${e} (${a})!`):n<=20?(rangoInfoEl.classList.add("aviso"),rangoInfoTextoEl.textContent=`Quedan ${n} números en el rango de ${e} (${a}).`):(rangoInfoEl.classList.add("normal"),rangoInfoTextoEl.textContent=`Rango de ${e}: ${a} · quedan ${n} números.`)}catch(e){rangoInfoEl.classList.remove("show")}else rangoInfoEl.classList.remove("show")}agenteSelect.addEventListener("change",()=>{actualizarAvisoRango();const e=agenteSelect.value;document.getElementById("tituloListaTickets").textContent=e?`Últimos tickets de ${e}`:"Últimos tickets",limiteTickets=100,cargarTickets()});const usuarioInput=document.getElementById("cliente"),sugerenciasBox=document.getElementById("usuarioSugerencias");let debounceUsuario=null,indiceActivo=-1;function ocultarSugerencias(){sugerenciasBox.classList.remove("show"),sugerenciasBox.innerHTML="",indiceActivo=-1}async function buscarUsuarios(e){try{const t=await apiGet(`buscar_tickets&q=${encodeURIComponent(e)}`),n=new Set,a=(t.tickets||[]).map(e=>e.cliente).filter(e=>!(!e||n.has(e.toLowerCase()))&&(n.add(e.toLowerCase()),!0)).slice(0,6);if(0===a.length)return void ocultarSugerencias();sugerenciasBox.innerHTML=a.map(e=>`<div class="sugerencia-item">${e}</div>`).join(""),sugerenciasBox.classList.add("show"),indiceActivo=-1}catch(e){ocultarSugerencias()}}usuarioInput.addEventListener("input",()=>{const e=usuarioInput.value.trim();clearTimeout(debounceUsuario),e.length<2?ocultarSugerencias():debounceUsuario=setTimeout(()=>buscarUsuarios(e),280)}),sugerenciasBox.addEventListener("click",e=>{const t=e.target.closest(".sugerencia-item");t&&(usuarioInput.value=t.textContent,ocultarSugerencias(),usuarioInput.focus())}),usuarioInput.addEventListener("keydown",e=>{const t=Array.from(sugerenciasBox.querySelectorAll(".sugerencia-item"));if(sugerenciasBox.classList.contains("show")&&0!==t.length){if("ArrowDown"===e.key)e.preventDefault(),indiceActivo=(indiceActivo+1)%t.length;else{if("ArrowUp"!==e.key)return"Enter"===e.key&&indiceActivo>=0?(e.preventDefault(),usuarioInput.value=t[indiceActivo].textContent,void ocultarSugerencias()):"Escape"===e.key?void ocultarSugerencias():void 0;e.preventDefault(),indiceActivo=(indiceActivo-1+t.length)%t.length}t.forEach((e,t)=>e.classList.toggle("activa",t===indiceActivo))}}),document.addEventListener("click",e=>{usuarioInput.contains(e.target)||sugerenciasBox.contains(e.target)||ocultarSugerencias()});let cantidadSeleccionada=1;const btnRegistrarEl=document.getElementById("btnRegistrar");function actualizarLabelBoton(){btnRegistrarEl.disabled&&"1"===btnRegistrarEl.dataset.cargando||(btnRegistrarEl.textContent=cantidadSeleccionada>1?`Cargar ${cantidadSeleccionada} tickets`:"Cargar ticket")}async function buscarTickets(){const e=document.getElementById("buscarInput").value.trim(),t=document.getElementById("resultadoBusqueda");if(e){t.innerHTML='<div class="vacio">Buscando...</div>';try{const n=await apiGet(`buscar_tickets&q=${encodeURIComponent(e)}`);if(!n.tickets||0===n.tickets.length)return void(t.innerHTML='<div class="vacio">No se encontraron tickets con esa búsqueda.</div>');t.innerHTML=`<ul class="lista-tickets">${agruparTickets(n.tickets).map(e=>grupoHTML(e,"busqueda")).join("")}</ul>`}catch(e){t.innerHTML='<div class="vacio">Error al buscar, intentá de nuevo.</div>'}}else t.innerHTML=""}document.querySelectorAll(".cantidad-item").forEach(e=>{e.addEventListener("click",()=>{document.querySelectorAll(".cantidad-item").forEach(e=>e.classList.remove("activa")),e.classList.add("activa"),cantidadSeleccionada=parseInt(e.dataset.cantidad,10),actualizarLabelBoton()})}),document.getElementById("btnRegistrar").addEventListener("click",async()=>{const e=document.getElementById("btnRegistrar"),t=document.getElementById("resultadoRegistro"),n=document.getElementById("agente").value.trim(),a=document.getElementById("cliente").value.trim();if(!n||!a)return t.className="resultado error show",void(t.textContent="Seleccioná un agente y completá el usuario.");e.disabled=!0,e.dataset.cargando="1",e.textContent=cantidadSeleccionada>1?`Cargando ${cantidadSeleccionada} tickets...`:"Cargando...";let i=null;for(let e=1;e<=2&&null===i;e++)try{i=await apiPost({action:"registrar_tickets_lote",agente:n,cliente:a,cantidad:cantidadSeleccionada})}catch(t){2===e?i={ok:!1,generados:0,error:"Error de conexión, intentá de nuevo."}:await new Promise(e=>setTimeout(e,600))}const o=i.generados||0,c=i.numeros&&i.numeros.length?i.numeros[i.numeros.length-1]:null,s=i.ok?null:i.error;o>0&&(document.getElementById("dTickets").textContent=c,cargarTickets(),actualizarAvisoRango()),s?(t.className="resultado error show",t.textContent=o>0?`Se cargaron ${o} de ${cantidadSeleccionada} tickets. ${s}`:s):(t.className="resultado",t.innerHTML="",document.getElementById("cliente").value="",ocultarSugerencias()),e.dataset.cargando="0",e.disabled=!1,actualizarLabelBoton()}),document.getElementById("btnBuscar").addEventListener("click",buscarTickets),document.getElementById("buscarInput").addEventListener("keydown",e=>{"Enter"===e.key&&buscarTickets()})</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorteo Aniversario — Red Mayu</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23170a2e'/%3E%3Ccircle cx='32' cy='32' r='24' fill='%23ff2ec4'/%3E%3Ctext x='32' y='42' font-family='Arial, sans-serif' font-size='30' font-weight='800' fill='%23e9c46a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23170a2e'/%3E%3Ccircle cx='32' cy='32' r='24' fill='%23ff2ec4'/%3E%3Ctext x='32' y='42' font-family='Arial, sans-serif' font-size='30' font-weight='800' fill='%23e9c46a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@900&family=Cormorant+Garamond:wght@600;700&family=Bebas+Neue&family=Fredoka:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --morado-fondo: #050505;
+    --morado-panel: #150710;
+    --morado-vivo: #c2158a;
+    --fucsia: #ff2ec4;
+    --lila: #ffb8e6;
+    --dorado: #d9af52;
+    --dorado-claro: #f6e3a1;
+    --dorado-opaco: #8a6a2c;
+    --blanco: #ffffff;
+    --texto-tenue: #e0b3cf;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 20% -15%, rgba(217,175,82,0.10) 0%, transparent 35%),
+      radial-gradient(circle at 85% 0%, rgba(255,46,196,0.08) 0%, transparent 40%),
+      #000000;
+    color: var(--blanco);
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    display:flex; flex-direction:column; align-items:center;
+    padding: 24px 16px 60px;
+  }
+
+  /* ---- Cinta dorada de aniversario (elemento firma) ---- */
+  .cinta-aniversario{
+    display:flex; align-items:center; gap:10px;
+    padding: 5px 16px; border-radius: 999px; margin-bottom: 16px;
+    border: 1px solid rgba(217,175,82,0.5);
+    background: linear-gradient(90deg, rgba(217,175,82,0.08), rgba(255,46,196,0.08));
+  }
+  .cinta-aniversario .linea{ width:16px; height:1px; background: linear-gradient(90deg, transparent, var(--dorado)); }
+  .cinta-aniversario .linea.der{ background: linear-gradient(90deg, var(--dorado), transparent); }
+  .cinta-aniversario span.txt{
+    font-family:'Cormorant Garamond', serif; font-weight:700; font-style:italic;
+    font-size: 13px; letter-spacing: 1px; color: var(--dorado-claro);
+  }
+
+  h2{
+    font-family:'Fredoka', sans-serif; font-weight: 700; letter-spacing: -0.5px;
+    text-transform: uppercase;
+    color: var(--blanco);
+  }
+
+  header{ text-align:center; margin-bottom: 26px; display:flex; flex-direction:column; align-items:center; }
+  .eyebrow{
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--fucsia); font-weight: 800; margin-bottom: 6px;
+  }
+  h1{
+    font-family:'Fira Sans', sans-serif;
+    font-weight: 900;
+    font-size: 62px; line-height: 0.95;
+    letter-spacing: -1px;
+    margin: 4px 0;
+    background: linear-gradient(180deg, var(--dorado-claro) 0%, var(--dorado) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter:
+      drop-shadow(0.7px 0 0 rgba(255,208,140,0.9))
+      drop-shadow(-0.7px 0 0 rgba(255,208,140,0.9))
+      drop-shadow(0 0.7px 0 rgba(255,208,140,0.9))
+      drop-shadow(0 -0.7px 0 rgba(255,208,140,0.9))
+      drop-shadow(0 0 22px rgba(255,46,196,0.45));
+    animation: pulsoFucsia 2.8s ease-in-out infinite;
+  }
+  .monto-h1{
+    display:block;
+    font-size: 1.22em;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-top: 14px;
+  }
+  .leyenda-h1{
+    display:block;
+    font-size: 0.34em;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  @keyframes pulsoFucsia{
+    0%, 100%{
+      filter:
+        drop-shadow(0.7px 0 0 rgba(255,208,140,0.9))
+        drop-shadow(-0.7px 0 0 rgba(255,208,140,0.9))
+        drop-shadow(0 0.7px 0 rgba(255,208,140,0.9))
+        drop-shadow(0 -0.7px 0 rgba(255,208,140,0.9))
+        drop-shadow(0 0 18px rgba(255,46,196,0.35));
+    }
+    50%{
+      filter:
+        drop-shadow(0.7px 0 0 rgba(255,208,140,0.9))
+        drop-shadow(-0.7px 0 0 rgba(255,208,140,0.9))
+        drop-shadow(0 0.7px 0 rgba(255,208,140,0.9))
+        drop-shadow(0 -0.7px 0 rgba(255,208,140,0.9))
+        drop-shadow(0 0 40px rgba(255,46,196,0.85));
+    }
+  }
+  .numero-display{ font-family:'Fredoka', sans-serif; font-weight: 700; letter-spacing: -0.5px; }
+  .premio{ margin-top: 8px; font-size: 15px; color: var(--texto-tenue); }
+  .premio strong{ color: var(--dorado-claro); }
+
+  .contador{ display:flex; gap: 10px; margin: 22px 0 8px; }
+  .contador .bloque{
+    background: var(--morado-panel);
+    border: 1px solid rgba(217,175,82,0.3);
+    border-radius: 14px; padding: 12px 14px; text-align:center; min-width: 62px;
+  }
+  .contador .num{ font-family:'Bebas Neue'; font-size: 26px; color: var(--dorado-claro); }
+  .contador .lbl{ font-size: 10px; color: var(--texto-tenue); text-transform:uppercase; letter-spacing:1px; }
+
+  .estado-badge{
+    margin-top: 10px; font-size: 12px; padding: 6px 14px; border-radius: 20px;
+    background: rgba(46,255,140,0.12); color: #6bffb0; border: 1px solid rgba(46,255,140,0.3);
+  }
+  .estado-badge.cerrado{
+    background: rgba(255,60,60,0.12); color:#ff9d9d; border-color: rgba(255,60,60,0.35);
+  }
+
+  .card{
+    width: 100%; max-width: 420px;
+    background: linear-gradient(160deg, var(--morado-panel), #0a0407);
+    border: 1px solid rgba(217,175,82,0.18);
+    border-radius: 20px; padding: 24px; margin-top: 20px;
+    box-shadow: 0 20px 60px rgba(194,21,138,0.28);
+    position: relative;
+  }
+  .card::before{
+    content:''; position:absolute; inset:0; border-radius:20px; padding:1px;
+    background: linear-gradient(160deg, rgba(217,175,82,0.35), transparent 30%, transparent 70%, rgba(255,46,196,0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events:none;
+  }
+  .card h2{ font-size: 22px; color: var(--blanco); margin-bottom: 4px;}
+  .card .sub{ font-size: 13px; color: var(--texto-tenue); margin-bottom: 18px; }
+
+  label{ font-size: 12px; color: var(--lila); text-transform: uppercase; letter-spacing: 0.5px; display:block; margin-bottom:6px; margin-top:14px;}
+  input{
+    width:100%; padding: 13px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05); color: var(--blanco); font-size: 15px; font-family:'Manrope';
+  }
+  input:focus{ outline:none; border-color: var(--dorado); }
+  input::placeholder{ color: rgba(255,255,255,0.3); }
+
+  button{
+    width:100%; margin-top: 20px; padding: 15px; border:none; border-radius: 12px;
+    background: linear-gradient(90deg, var(--morado-vivo), var(--fucsia) 70%, var(--dorado) 130%);
+    color: var(--blanco); font-weight: 800; font-size: 15px; letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor:pointer; transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  button:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px rgba(217,175,82,0.35); }
+  button:disabled{ opacity: 0.4; cursor:not-allowed; transform:none; box-shadow:none; }
+
+  .resultado{
+    margin-top: 18px; padding: 16px; border-radius: 12px;
+    background: rgba(217,175,82,0.08); border: 1px solid rgba(217,175,82,0.3);
+    font-size: 14px; display:none;
+  }
+  .resultado.show{ display:block; }
+  .resultado .numero-display{ font-size: 30px; color: var(--dorado-claro); }
+  .resultado.error{ background: rgba(255,60,60,0.1); border-color: rgba(255,60,60,0.4); color:#ffb3b3; }
+
+  .lista-tickets{ list-style:none; margin-top: 4px; display:flex; flex-direction:column; gap: 12px; }
+  .ticket-card{
+    position: relative;
+    display:flex; flex-direction:column; align-items:center; gap: 8px;
+    padding: 16px 18px;
+    border: 2.5px solid rgba(217,175,82,0.65);
+    border-radius: 16px;
+    background: linear-gradient(160deg, rgba(217,175,82,0.10), rgba(217,175,82,0.03));
+    box-shadow: 0 0 18px rgba(217,175,82,0.25), inset 0 0 20px rgba(217,175,82,0.05);
+  }
+  .btn-compartir{
+    position:absolute; top:10px; right:10px;
+    width:30px; height:30px; margin:0; padding:0;
+    border-radius:50%; border:1px solid rgba(217,175,82,0.55);
+    background: rgba(217,175,82,0.14); color: var(--dorado-claro);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; text-transform:none; font-size:14px; line-height:1;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-compartir:hover{ background: rgba(217,175,82,0.26); transform: scale(1.08); box-shadow:none; }
+  .btn-compartir:disabled{ opacity:0.5; cursor:default; transform:none; }
+  .numeros-grupo{
+    display:flex; flex-direction:row; flex-wrap:wrap;
+    justify-content:center; align-items:baseline;
+    gap: 2px 10px; width:100%;
+  }
+  .numeros-grupo .numero-chip{
+    color: var(--dorado-claro); font-weight:800;
+    font-family:'Fredoka', sans-serif; font-size: 25px; line-height: 1.3;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 12px rgba(217,175,82,0.55), 0 0 22px rgba(217,175,82,0.25);
+  }
+  .info-grupo{ color: var(--texto-tenue); text-align:center; width:100%; }
+  .info-grupo .cliente-agente{ color: var(--blanco); font-weight:800; font-size: 20px; word-break: break-word; }
+  .info-grupo .cliente-agente .agente-inline{ color: var(--texto-tenue); font-weight:500; font-size: 14px; }
+  .info-grupo .fecha{ font-size: 12px; margin-top: 4px; color: rgba(224,179,207,0.75); }
+  .vacio{ color: var(--texto-tenue); font-size: 13px; text-align:center; padding: 10px 0; }
+
+  select{
+    width:100%; padding: 13px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"%3E%3Cpath d="M1 1l5 5 5-5" stroke="%23f6e3a1" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E') no-repeat right 14px center;
+    color: var(--blanco); font-size: 15px; font-family:'Manrope'; appearance:none; -webkit-appearance:none;
+  }
+  select:focus{ outline:none; border-color: var(--dorado); }
+  select option{ background: var(--morado-panel); color: var(--blanco); }
+
+  .buscador{ display:flex; gap:8px; margin-top:14px; }
+  .buscador input{ flex:1; }
+  .buscador button{ width:auto; margin-top:0; padding: 0 18px; flex-shrink:0; }
+
+  .btn-ver-mas{
+    width:100%; margin-top: 14px; padding: 11px; border-radius: 10px;
+    background: transparent; border: 1px solid rgba(217,175,82,0.35);
+    color: var(--dorado-claro); font-weight: 700; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .btn-ver-mas:hover{ background: rgba(217,175,82,0.08); box-shadow:none; transform:none; }
+  .btn-ver-mas:disabled{ opacity: 0.5; }
+  #resultadoBusqueda{ margin-top: 14px; }
+  #resultadoBusqueda .lista-tickets{ margin-top:0; }
+
+  .campo-autocompletar{ position:relative; }
+
+  .cantidad-stepper{ display:flex; align-items:stretch; gap: 8px; margin-top: 8px; }
+  .btn-stepper{
+    width: 52px; flex-shrink:0; aspect-ratio: 1/1;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--morado-vivo), var(--fucsia) 65%, var(--dorado) 130%);
+    border: none; border-radius: 12px; color: var(--blanco);
+    font-family:'Fredoka', sans-serif; font-weight: 800; font-size: 26px;
+    cursor:pointer; user-select:none; padding:0; line-height:1;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn-stepper:hover{ transform: translateY(-1px); box-shadow: 0 6px 16px rgba(217,175,82,0.3); }
+  .btn-stepper:active{ transform: translateY(0); }
+  #cantidadInput{
+    flex:1; min-width:0; text-align:center;
+    font-family:'Fredoka', sans-serif; font-weight: 800; font-size: 24px;
+    -moz-appearance: textfield;
+  }
+  #cantidadInput::-webkit-outer-spin-button,
+  #cantidadInput::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .cantidad-hint{ margin-top: 8px; font-size: 11px; color: var(--texto-tenue); }
+
+  .rango-info{
+    display:none; margin-top: 8px; padding: 9px 12px; border-radius: 9px;
+    font-size: 12px; font-weight: 700; align-items:center; gap:8px;
+  }
+  .rango-info.show{ display:flex; }
+  .rango-info .punto{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .rango-info.normal{ background: rgba(255,255,255,0.05); color: var(--texto-tenue); border:1px solid rgba(255,255,255,0.1); }
+  .rango-info.normal .punto{ background: var(--lila); }
+  .rango-info.aviso{ background: rgba(217,175,82,0.12); color: var(--dorado-claro); border:1px solid rgba(217,175,82,0.4); }
+  .rango-info.aviso .punto{ background: var(--dorado); }
+  .rango-info.urgente{ background: rgba(255,46,196,0.14); color: #ff8fe0; border:1px solid rgba(255,46,196,0.5); animation: parpadeoUrgente 1.4s ease-in-out infinite; }
+  .rango-info.urgente .punto{ background: var(--fucsia); }
+  .rango-info.agotado{ background: rgba(255,60,60,0.14); color:#ff9d9d; border:1px solid rgba(255,60,60,0.45); }
+  .rango-info.agotado .punto{ background: #ff5c5c; }
+  @keyframes parpadeoUrgente{
+    0%, 100%{ opacity: 1; }
+    50%{ opacity: 0.6; }
+  }
+  .sugerencias{
+    display:none; position:absolute; left:0; right:0; top:calc(100% + 6px); z-index: 20;
+    background: #0e0509; border: 1px solid rgba(217,175,82,0.4); border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.55); overflow:hidden;
+    max-height: 220px; overflow-y:auto;
+  }
+  .sugerencias.show{ display:block; }
+  .sugerencias .sugerencia-item{
+    padding: 11px 14px; font-size: 14px; color: var(--blanco); cursor:pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .sugerencias .sugerencia-item:last-child{ border-bottom:none; }
+  .sugerencias .sugerencia-item:hover,
+  .sugerencias .sugerencia-item.activa{
+    background: rgba(217,175,82,0.14); color: var(--dorado-claro);
+  }
+  .ganador-box .numero-display{
+    font-size: 68px;
+    background: linear-gradient(100deg, var(--dorado-claro) 0%, var(--fucsia) 45%, var(--dorado-claro) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 18px rgba(217,175,82,0.45));
+  }
+
+  footer{ margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.3); text-align:center; letter-spacing: 0.5px; }
+  footer strong{ color: rgba(217,175,82,0.6); }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="cinta-aniversario">
+    <span class="linea"></span>
+    <span class="txt">2º Aniversario</span>
+    <span class="linea der"></span>
+  </div>
+  <div class="eyebrow">Red Mayu</div>
+  <h1>SORTEO<br>ANIVERSARIO<span class="monto-h1">$1.500.000</span><span class="leyenda-h1">EN PREMIOS!</span></h1>
+  <div class="premio">8 Ganadores: <strong>6 de $100.000</strong>, <strong>1 de $200.000</strong> y <strong>1 de $700.000</strong>.</div>
+  <div class="premio">Se entrega <strong>1 número cada $5.000</strong> de carga.</div>
+  <div class="premio" style="margin-top:12px; color:var(--dorado-claro); font-weight:700;">Sorteo en vivo · 26/9 a las 22 hs · Facebook: Red Mayu</div>
+</header>
+
+<div class="contador" id="contadorRegresivo">
+  <div class="bloque"><div class="num" id="dDias">--</div><div class="lbl">días</div></div>
+  <div class="bloque"><div class="num" id="dHoras">--</div><div class="lbl">hs</div></div>
+  <div class="bloque"><div class="num" id="dMin">--</div><div class="lbl">min</div></div>
+  <div class="bloque" style="border-color: rgba(255,184,230,0.35);"><div class="num" id="dTickets" style="color:var(--lila);">--</div><div class="lbl">tickets</div></div>
+</div>
+<div class="estado-badge" id="estadoBadge">Cargando estado...</div>
+
+<div class="card">
+  <h2>Cargar ticket</h2>
+
+  <label for="agente">Agente</label>
+  <select id="agente">
+    <option value="" disabled selected>Seleccioná un agente</option>
+    <option value="SOLCI">SOLCI</option>
+    <option value="GUERRERAS">GUERRERAS</option>
+  </select>
+  <div class="rango-info" id="rangoInfo"><span class="punto"></span><span id="rangoInfoTexto"></span></div>
+
+  <label for="cliente">Usuario</label>
+  <div class="campo-autocompletar">
+    <input id="cliente" type="text" placeholder="Nombre de usuario" autocomplete="off">
+    <div id="usuarioSugerencias" class="sugerencias"></div>
+  </div>
+
+  <label>Cantidad de tickets</label>
+  <div class="cantidad-stepper">
+    <button type="button" class="btn-stepper" id="btnMenos" aria-label="Restar">−</button>
+    <input id="cantidadInput" type="number" inputmode="numeric" min="1" max="100" value="1">
+    <button type="button" class="btn-stepper" id="btnMas" aria-label="Sumar">+</button>
+  </div>
+  <div class="cantidad-hint" id="cantidadHint">$5.000 de carga = 1 número</div>
+
+  <button id="btnRegistrar">Cargar ticket</button>
+
+  <div class="resultado" id="resultadoRegistro"></div>
+</div>
+
+<div class="card" id="cardTicketsOGanador">
+  <div id="vistaTickets">
+    <h2 id="tituloListaTickets">Últimos tickets</h2>
+    <div class="buscador">
+      <input id="buscarInput" type="text" placeholder="Buscar por usuario, agente o número">
+      <button id="btnBuscar">Buscar</button>
+    </div>
+    <div id="resultadoBusqueda"></div>
+    <div class="divisor-sutil" style="height:1px; background:rgba(255,255,255,0.06); margin:18px 0 4px;"></div>
+    <ul class="lista-tickets" id="listaTickets">
+      <li class="vacio">Todavía no hay tickets cargados</li>
+    </ul>
+    <button id="btnVerMas" class="btn-ver-mas" style="display:none;">Ver más tickets</button>
+  </div>
+  <div id="vistaGanador" style="display:none;">
+    <h2>🏆 Ganadores del aniversario</h2>
+    <div class="ganador-box" style="padding-top:14px;">
+      <div class="numero-display" id="ganadorNumero">#--</div>
+      <div style="margin-top:10px;">Usuario: <strong id="ganadorCliente">—</strong></div>
+      <div>Agente: <strong id="ganadorAgente">—</strong></div>
+      <div style="margin-top:6px; color:var(--dorado-claro); font-weight:800;" id="ganadorPremio">Ganó un premio</div>
+      <div style="margin-top:12px; color:var(--texto-tenue); font-size:12px;" id="ganadorFecha">Ticket entregado el —</div>
+    </div>
+  </div>
+</div>
+
+<footer>Sorteo Aniversario · <strong>Red Mayu</strong></footer>
+
+<script>
+// ⚠️ Reemplazar por la URL del deployment del Apps Script de ESTE sorteo
+const API_URL = "https://script.google.com/macros/s/AKfycby5zIzrOAutReTemw6zfFZWk-52Kf1C0O0GnCzHFqI8gR-kGaZBdJz6P-nlAxy4DOIbmA/exec";
+
+let intervaloTickets = null;
+
+function pad4(n){
+  return String(n).padStart(4, '0');
+}
+
+async function apiGet(action){
+  const res = await fetch(`${API_URL}?action=${action}&v=2`);
+  return res.json();
+}
+async function apiPost(payload){
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload)
+  });
+  return res.json();
+}
+
+function actualizarContador(semanaFin){
+  const fin = new Date(semanaFin).getTime();
+  const ahora = Date.now();
+  const diff = Math.max(0, fin - ahora);
+  const dias = Math.floor(diff / (1000*60*60*24));
+  const horas = Math.floor((diff / (1000*60*60)) % 24);
+  const min = Math.floor((diff / (1000*60)) % 60);
+  document.getElementById('dDias').textContent = dias;
+  document.getElementById('dHoras').textContent = String(horas).padStart(2,'0');
+  document.getElementById('dMin').textContent = String(min).padStart(2,'0');
+}
+
+// Agrupa tickets consecutivos del mismo usuario y agente, cargados
+// dentro de una ventana corta de tiempo entre sí (por ejemplo, cuando
+// se cargan varios números de una sola vez con el selector de
+// cantidad), para mostrarlos juntos en un único cuadro.
+function agruparTickets(tickets){
+  const grupos = [];
+  for(const t of tickets){
+    const ultimo = grupos[grupos.length - 1];
+    const mismoLote = ultimo &&
+      ultimo.cliente === t.cliente &&
+      ultimo.agente === t.agente &&
+      Math.abs(new Date(ultimo.tickets[ultimo.tickets.length - 1].timestamp) - new Date(t.timestamp)) < 3 * 60 * 1000;
+
+    if(mismoLote){
+      ultimo.tickets.push(t);
+    } else {
+      grupos.push({ cliente: t.cliente, agente: t.agente, tickets: [t] });
+    }
+  }
+  return grupos;
+}
+
+function grupoHTML(g, prefijo){
+  const primero = g.tickets[0];
+  const f = new Date(primero.timestamp);
+  const fechaStr = `${f.toLocaleDateString('es-AR')} ${f.toLocaleTimeString('es-AR', {hour:'2-digit', minute:'2-digit'})}`;
+  const numerosHTML = g.tickets.map(t => `<span class="numero-chip">${pad4(t.numero)}</span>`).join('');
+  const idTarjeta = `tarjeta-${prefijo}-${primero.numero}`;
+  return `
+    <li class="ticket-card" id="${idTarjeta}">
+      <button type="button" class="btn-compartir" title="Compartir como imagen" onclick="compartirTarjeta('${idTarjeta}')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+      </button>
+      <div class="numeros-grupo">${numerosHTML}</div>
+      <div class="info-grupo">
+        <div class="cliente-agente">${g.cliente} <span class="agente-inline">(${g.agente})</span></div>
+        <div class="fecha">${fechaStr}</div>
+      </div>
+    </li>
+  `;
+}
+
+// Convierte la tarjeta en una imagen PNG y la comparte (en celular,
+// abre el menú nativo de compartir) o la descarga (en compu, si no
+// hay soporte para compartir archivos directamente).
+async function compartirTarjeta(idTarjeta){
+  const tarjeta = document.getElementById(idTarjeta);
+  if(!tarjeta) return;
+
+  const btn = tarjeta.querySelector('.btn-compartir');
+  const iconoOriginal = btn.innerHTML;
+  btn.disabled = true;
+  btn.style.visibility = 'hidden'; // que no salga el botón en la captura
+
+  try{
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+
+    const canvas = await html2canvas(tarjeta, {
+      backgroundColor: '#000000',
+      scale: 2
+    });
+
+    btn.style.visibility = 'visible';
+
+    canvas.toBlob(async (blob) => {
+      if(!blob) return;
+      const archivo = new File([blob], `ticket-${idTarjeta}.png`, { type: 'image/png' });
+
+      if(navigator.canShare && navigator.canShare({ files: [archivo] })){
+        try{
+          await navigator.share({ files: [archivo], title: 'Sorteo Aniversario Red Mayu' });
+        }catch(err){
+          // el usuario canceló el menú de compartir: no hacemos nada
+        }
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `ticket.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    }, 'image/png');
+  }catch(err){
+    alert('No se pudo generar la imagen, intentá de nuevo.');
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = iconoOriginal;
+    btn.style.visibility = 'visible';
+  }
+}
+
+let limiteTickets = 100;
+const PASO_VER_MAS = 100;
+const LIMITE_MAXIMO = 500;
+
+function renderTickets(tickets){
+  const ul = document.getElementById('listaTickets');
+  const btnVerMas = document.getElementById('btnVerMas');
+
+  if(!tickets || tickets.length === 0){
+    ul.innerHTML = '<li class="vacio">Todavía no hay tickets cargados</li>';
+    btnVerMas.style.display = 'none';
+    return;
+  }
+
+  const grupos = agruparTickets(tickets.slice(0, limiteTickets));
+  ul.innerHTML = grupos.map(g => grupoHTML(g, 'recientes')).join('');
+
+  // Solo mostramos "Ver más" si hay indicios de que puede haber tickets
+  // más viejos todavía sin traer (llegamos justo al límite pedido).
+  if(tickets.length >= limiteTickets && limiteTickets < LIMITE_MAXIMO){
+    btnVerMas.style.display = 'block';
+    btnVerMas.disabled = false;
+    btnVerMas.textContent = 'Ver más tickets';
+  } else {
+    btnVerMas.style.display = 'none';
+  }
+}
+
+async function cargarTickets(){
+  try{
+    const agente = document.getElementById('agente').value;
+    const accion = agente
+      ? `tickets_por_agente&agente=${encodeURIComponent(agente)}&limite=${limiteTickets}`
+      : `ultimos_tickets&limite=${limiteTickets}`;
+    const data = await apiGet(accion);
+    renderTickets(data.tickets);
+  }catch(err){ console.error(err); }
+}
+
+document.getElementById('btnVerMas').addEventListener('click', async () => {
+  const btnVerMas = document.getElementById('btnVerMas');
+  btnVerMas.disabled = true;
+  btnVerMas.textContent = 'Cargando...';
+  limiteTickets = Math.min(limiteTickets + PASO_VER_MAS, LIMITE_MAXIMO);
+  await cargarTickets();
+});
+
+function iniciarRefrescoTickets(){
+  if(intervaloTickets) return;
+  cargarTickets();
+  intervaloTickets = setInterval(cargarTickets, 40000);
+}
+function detenerRefrescoTickets(){
+  if(intervaloTickets){ clearInterval(intervaloTickets); intervaloTickets = null; }
+}
+
+function mostrarVistaGanador(ganador){
+  document.getElementById('vistaTickets').style.display = 'none';
+  document.getElementById('vistaGanador').style.display = 'block';
+  detenerRefrescoTickets();
+  if(!ganador) return;
+  document.getElementById('ganadorNumero').textContent = `#${pad4(ganador.numero)}`;
+  document.getElementById('ganadorCliente').textContent = ganador.cliente || '—';
+  document.getElementById('ganadorAgente').textContent = ganador.agente || '—';
+  document.getElementById('ganadorPremio').textContent = ganador.premio ? `Ganó $${Number(ganador.premio).toLocaleString('es-AR')}` : 'Ganó un premio';
+  if(ganador.fecha_ticket){
+    const f = new Date(ganador.fecha_ticket);
+    document.getElementById('ganadorFecha').textContent =
+      `Ticket entregado el ${f.toLocaleDateString('es-AR')} a las ${f.toLocaleTimeString('es-AR', {hour:'2-digit', minute:'2-digit'})}`;
+  }
+}
+
+function mostrarVistaTickets(){
+  document.getElementById('vistaTickets').style.display = 'block';
+  document.getElementById('vistaGanador').style.display = 'none';
+}
+
+async function cargarEstado(){
+  try{
+    const data = await apiGet('estado_liviano');
+    if(data.semana_fin) actualizarContador(data.semana_fin);
+
+    const badge = document.getElementById('estadoBadge');
+    const btnRegistrar = document.getElementById('btnRegistrar');
+    document.getElementById('dTickets').textContent = data.contador ?? 0;
+    if(data.habilitado){
+      badge.textContent = 'Carga de tickets abierta';
+      badge.className = 'estado-badge';
+      btnRegistrar.disabled = false;
+    } else {
+      badge.textContent = 'Carga de tickets cerrada';
+      badge.className = 'estado-badge cerrado';
+      btnRegistrar.disabled = true;
+    }
+
+    if(data.mostrar_ganador){
+      mostrarVistaGanador(data.ganador);
+    } else {
+      mostrarVistaTickets();
+      if(data.habilitado) iniciarRefrescoTickets();
+      else detenerRefrescoTickets();
+    }
+  }catch(err){ console.error(err); }
+}
+cargarEstado();
+setInterval(cargarEstado, 45000);
+
+// ---- Aviso de números restantes por agente ----
+const agenteSelect = document.getElementById('agente');
+const rangoInfoEl = document.getElementById('rangoInfo');
+const rangoInfoTextoEl = document.getElementById('rangoInfoTexto');
+
+async function actualizarAvisoRango(){
+  const agente = agenteSelect.value;
+  if(!agente){
+    rangoInfoEl.classList.remove('show');
+    return;
+  }
+
+  try{
+    const data = await apiGet('rangos_info');
+    const rangosAgente = (data.rangos || []).filter(r => r.agente === agente);
+    if(rangosAgente.length === 0){
+      rangoInfoEl.classList.remove('show');
+      return;
+    }
+
+    const libres = rangosAgente.reduce((suma, r) => suma + r.libres, 0);
+    const descripcionRangos = rangosAgente.map(r => `${r.inicio}–${r.fin}`).join(' y ');
+    rangoInfoEl.classList.add('show');
+    rangoInfoEl.classList.remove('normal', 'aviso', 'urgente', 'agotado');
+
+    if(libres <= 0){
+      rangoInfoEl.classList.add('agotado');
+      rangoInfoTextoEl.textContent = `Quedan 0 números para ${agente} (${descripcionRangos}). Por favor, cargá el siguiente rango antes de seguir vendiendo.`;
+    } else if(libres <= 10){
+      rangoInfoEl.classList.add('urgente');
+      rangoInfoTextoEl.textContent = `¡Quedan solo ${libres} números en el rango de ${agente} (${descripcionRangos})!`;
+    } else if(libres <= 20){
+      rangoInfoEl.classList.add('aviso');
+      rangoInfoTextoEl.textContent = `Quedan ${libres} números en el rango de ${agente} (${descripcionRangos}).`;
+    } else {
+      rangoInfoEl.classList.add('normal');
+      rangoInfoTextoEl.textContent = `Rango de ${agente}: ${descripcionRangos} · quedan ${libres} números.`;
+    }
+  }catch(err){
+    rangoInfoEl.classList.remove('show');
+  }
+}
+
+agenteSelect.addEventListener('change', () => {
+  actualizarAvisoRango();
+
+  const agente = agenteSelect.value;
+  const titulo = document.getElementById('tituloListaTickets');
+  titulo.textContent = agente ? `Últimos tickets de ${agente}` : 'Últimos tickets';
+
+  limiteTickets = 100; // reiniciamos el "ver más" al cambiar de agente
+  cargarTickets();
+});
+
+// ---- Autocompletar de usuario ----
+const usuarioInput = document.getElementById('cliente');
+const sugerenciasBox = document.getElementById('usuarioSugerencias');
+let debounceUsuario = null;
+let indiceActivo = -1;
+
+function ocultarSugerencias(){
+  sugerenciasBox.classList.remove('show');
+  sugerenciasBox.innerHTML = '';
+  indiceActivo = -1;
+}
+
+usuarioInput.addEventListener('input', () => {
+  const q = usuarioInput.value.trim();
+  clearTimeout(debounceUsuario);
+  if(q.length < 2){
+    ocultarSugerencias();
+    return;
+  }
+  debounceUsuario = setTimeout(() => buscarUsuarios(q), 280);
+});
+
+async function buscarUsuarios(q){
+  try{
+    const data = await apiGet(`buscar_tickets&q=${encodeURIComponent(q)}`);
+    const vistos = new Set();
+    const nombres = (data.tickets || [])
+      .map(t => t.cliente)
+      .filter(n => {
+        if(!n || vistos.has(n.toLowerCase())) return false;
+        vistos.add(n.toLowerCase());
+        return true;
+      })
+      .slice(0, 6);
+
+    if(nombres.length === 0){
+      ocultarSugerencias();
+      return;
+    }
+    sugerenciasBox.innerHTML = nombres.map(n => `<div class="sugerencia-item">${n}</div>`).join('');
+    sugerenciasBox.classList.add('show');
+    indiceActivo = -1;
+  }catch(err){
+    ocultarSugerencias();
+  }
+}
+
+sugerenciasBox.addEventListener('click', (e) => {
+  const item = e.target.closest('.sugerencia-item');
+  if(item){
+    usuarioInput.value = item.textContent;
+    ocultarSugerencias();
+    usuarioInput.focus();
+  }
+});
+
+usuarioInput.addEventListener('keydown', (e) => {
+  const items = Array.from(sugerenciasBox.querySelectorAll('.sugerencia-item'));
+  if(!sugerenciasBox.classList.contains('show') || items.length === 0) return;
+
+  if(e.key === 'ArrowDown'){
+    e.preventDefault();
+    indiceActivo = (indiceActivo + 1) % items.length;
+  } else if(e.key === 'ArrowUp'){
+    e.preventDefault();
+    indiceActivo = (indiceActivo - 1 + items.length) % items.length;
+  } else if(e.key === 'Enter' && indiceActivo >= 0){
+    e.preventDefault();
+    usuarioInput.value = items[indiceActivo].textContent;
+    ocultarSugerencias();
+    return;
+  } else if(e.key === 'Escape'){
+    ocultarSugerencias();
+    return;
+  } else {
+    return;
+  }
+  items.forEach((el, i) => el.classList.toggle('activa', i === indiceActivo));
+});
+
+document.addEventListener('click', (e) => {
+  if(!usuarioInput.contains(e.target) && !sugerenciasBox.contains(e.target)){
+    ocultarSugerencias();
+  }
+});
+
+// ---- Selector de cantidad de tickets ----
+let cantidadSeleccionada = 1;
+const btnRegistrarEl = document.getElementById('btnRegistrar');
+const cantidadInputEl = document.getElementById('cantidadInput');
+const CANTIDAD_MAXIMA = 100;
+
+function actualizarLabelBoton(){
+  if(btnRegistrarEl.disabled && btnRegistrarEl.dataset.cargando === '1') return;
+  btnRegistrarEl.textContent = cantidadSeleccionada > 1
+    ? `Cargar ${cantidadSeleccionada} tickets`
+    : 'Cargar ticket';
+}
+
+function fijarCantidad(valor){
+  let n = parseInt(valor, 10);
+  if(isNaN(n)) n = 1;
+  n = Math.min(CANTIDAD_MAXIMA, Math.max(1, n));
+  cantidadSeleccionada = n;
+  cantidadInputEl.value = n;
+  actualizarLabelBoton();
+}
+
+document.getElementById('btnMenos').addEventListener('click', () => fijarCantidad(cantidadSeleccionada - 1));
+document.getElementById('btnMas').addEventListener('click', () => fijarCantidad(cantidadSeleccionada + 1));
+cantidadInputEl.addEventListener('change', () => fijarCantidad(cantidadInputEl.value));
+cantidadInputEl.addEventListener('blur', () => fijarCantidad(cantidadInputEl.value));
+
+document.getElementById('btnRegistrar').addEventListener('click', async () => {
+  const btn = document.getElementById('btnRegistrar');
+  const box = document.getElementById('resultadoRegistro');
+  const agente = document.getElementById('agente').value.trim();
+  const cliente = document.getElementById('cliente').value.trim();
+
+  if(!agente || !cliente){
+    box.className = 'resultado error show';
+    box.textContent = 'Seleccioná un agente y completá el usuario.';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.dataset.cargando = '1';
+  btn.textContent = cantidadSeleccionada > 1
+    ? `Cargando ${cantidadSeleccionada} tickets...`
+    : 'Cargando...';
+
+  // Se manda UN SOLO pedido con la cantidad, en vez de uno por cada
+  // ticket: el backend calcula todos los números y los escribe en un
+  // solo viaje a la hoja, mucho más rápido que N pedidos separados.
+  let data = null;
+  for(let intento = 1; intento <= 2 && data === null; intento++){
+    try{
+      data = await apiPost({ action:'registrar_tickets_lote', agente, cliente, cantidad: cantidadSeleccionada });
+    }catch(err){
+      if(intento === 2){
+        data = { ok:false, generados:0, error:'Error de conexión, intentá de nuevo.' };
+      } else {
+        await new Promise(r => setTimeout(r, 600));
+      }
+    }
+  }
+
+  const generados = data.generados || 0;
+  const ultimoNumero = (data.numeros && data.numeros.length) ? data.numeros[data.numeros.length - 1] : null;
+  const errorMsg = data.ok ? null : data.error;
+
+  if(generados > 0){
+    document.getElementById('dTickets').textContent = ultimoNumero;
+    cargarTickets();
+    actualizarAvisoRango();
+  }
+
+  if(errorMsg){
+    box.className = 'resultado error show';
+    box.textContent = generados > 0
+      ? `Se cargaron ${generados} de ${cantidadSeleccionada} tickets. ${errorMsg}`
+      : errorMsg;
+  } else {
+    box.className = 'resultado';
+    box.innerHTML = '';
+    document.getElementById('cliente').value = '';
+    ocultarSugerencias();
+  }
+
+  btn.dataset.cargando = '0';
+  btn.disabled = false;
+  actualizarLabelBoton();
+});
+
+document.getElementById('btnBuscar').addEventListener('click', buscarTickets);
+document.getElementById('buscarInput').addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') buscarTickets();
+});
+
+async function buscarTickets(){
+  const q = document.getElementById('buscarInput').value.trim();
+  const box = document.getElementById('resultadoBusqueda');
+
+  if(!q){
+    box.innerHTML = '';
+    return;
+  }
+
+  box.innerHTML = '<div class="vacio">Buscando...</div>';
+  try{
+    const data = await apiGet(`buscar_tickets&q=${encodeURIComponent(q)}`);
+    if(!data.tickets || data.tickets.length === 0){
+      box.innerHTML = '<div class="vacio">No se encontraron tickets con esa búsqueda.</div>';
+      return;
+    }
+    box.innerHTML = `<ul class="lista-tickets">${agruparTickets(data.tickets).map(g => grupoHTML(g, 'busqueda')).join('')}</ul>`;
+  }catch(err){
+    box.innerHTML = '<div class="vacio">Error al buscar, intentá de nuevo.</div>';
+  }
+}
+</script>
+
+</body>
+</html>

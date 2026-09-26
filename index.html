@@ -808,10 +808,18 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
   // Se manda UN SOLO pedido con la cantidad, en vez de uno por cada
   // ticket: el backend calcula todos los números y los escribe en un
   // solo viaje a la hoja, mucho más rápido que N pedidos separados.
+  //
+  // loteId identifica este pedido puntual: si hay que reintentar (por
+  // ejemplo porque la respuesta tardó y el navegador pensó que había
+  // fallado), se reenvía el MISMO loteId. Así, si el primer intento en
+  // realidad sí se había completado del lado del servidor, el backend
+  // devuelve ese mismo resultado en vez de generar tickets de nuevo.
+  const loteId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
   let data = null;
   for(let intento = 1; intento <= 2 && data === null; intento++){
     try{
-      data = await apiPost({ action:'registrar_tickets_lote', agente, cliente, cantidad: cantidadSeleccionada });
+      data = await apiPost({ action:'registrar_tickets_lote', agente, cliente, cantidad: cantidadSeleccionada, loteId });
     }catch(err){
       if(intento === 2){
         data = { ok:false, generados:0, error:'Error de conexión, intentá de nuevo.' };
